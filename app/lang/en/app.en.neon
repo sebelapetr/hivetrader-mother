@@ -2,8 +2,8 @@
 # Date: 22. 9. 2020
 # Time: 00:39
 
-title: 'HiveTrader Skeleton'
-name: 'HiveTrader Skeleton'
+title: 'Apiarium - Mater'
+name: 'Apiarium - Mater'
 
 dashboard:
     title: 'Dashboard'
@@ -37,3 +37,13 @@ rights:
 
 authentication:
     title: 'Login'
+
+stockchanges:
+    title: 'Stock changes'
+    informations: 'Informations'
+    name: 'Name'
+    ean: 'EAN'
+    supplierId: 'Supplier ID'
+    createdAt: 'Created at'
+    updatedAt: 'Updated at'
+    stockChanges: 'Stock changes'

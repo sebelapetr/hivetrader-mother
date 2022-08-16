@@ -1,4 +1,4 @@
-HiveTrader Skeleton
+HiveTrader Mother
 =================
 
 Requirements

@@ -9,3 +9,7 @@ dashboard:
 users:
     title: 'Users'
     read: 'Show section users'
+
+stockchanges:
+    title: 'Stock changes'
+    read: 'Show section stock changes'

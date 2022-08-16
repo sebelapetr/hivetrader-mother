@@ -1,0 +1,102 @@
+{varType App\Model\SupplierProduct $supplierProduct}
+{varType array $stockChangesData}
+{block content}
+<div class="container-fluid">
+    <h1 class="h3 mb-2 text-dark">{$supplierProduct->name}</h1>
+    {var $descrtiption = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean fermentum risus id tortor. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nullam faucibus mi quis velit. Nulla non arcu lacinia neque faucibus fringilla. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Mauris dictum facilisis augue. Aliquam erat volutpat. Donec vitae arcu. Vivamus porttitor turpis ac leo. Mauris dolor felis, sagittis at, luctus sed, aliquam non, tellus. Praesent id justo in neque elementum ultrices. Integer pellentesque quam vel velit. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Curabitur bibendum justo non orci. Maecenas libero. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Integer malesuada. Nulla pulvinar eleifend sem. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu.Integer imperdiet lectus quis justo. In convallis. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quo"}
+    <p class="mb-4">{$descrtiption|truncate:300}</p>
+    <div class="row">
+        <div class="col-xl-5 col-lg-7">
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{_app.stockchanges.informations}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive table-borderless">
+                        <table class="table">
+                            <tr>
+                                <th>{_app.stockchanges.ean}:</th>
+                                <td>{$supplierProduct->ean}</td>
+                            </tr>
+                            <tr>
+                                <th>{_app.stockchanges.supplierId}:</th>
+                                <td>{$supplierProduct->supplierId}</td>
+                            </tr>
+                            <tr>
+                                <th>{_app.stockchanges.createdAt}:</th>
+                                <td>{$supplierProduct->createdAt|date:'d. m. Y H:i'}</td>
+                            </tr>
+                            <tr>
+                                <th>{_app.stockchanges.updatedAt}:</th>
+                                <td>{$supplierProduct->updatedAt|date:'d. m. Y H:i'}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-7 col-lg-7">
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{_app.stockchanges.stockChanges}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="stockChangesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {* datagrid *}
+        </div>
+    </div>
+</div>
+{/block}
+
+{block js}
+<script>
+    var ctx = document.getElementById("stockChangesChart");
+    var labels = [];
+    var values = [];
+
+    {foreach $stockChangesData as $key => $value}
+        labels.push({$key});
+        values.push({$value});
+    {/foreach}
+
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            data: values,
+            datasets: [{
+                label: "",
+                lineTension: 0,
+                borderColor: "rgba(78, 115, 223, 1)",
+                pointRadius: 3,
+                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointBorderColor: "rgba(78, 115, 223, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 4,
+                fill: 'start',
+                pointStyle: 'circle',
+                data: values,
+            }],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            }
+        }
+    });
+</script>
+{/block}
