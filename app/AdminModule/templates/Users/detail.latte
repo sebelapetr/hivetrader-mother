@@ -1,0 +1,66 @@
+{varType App\Model\User $item}
+{block content}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="col-sm-6">
+        <h1 class="h3 mb-0 text-gray-800">{_app.users.detail, ['name' => $item->name. ' ' .$item->surname]}</h1>
+    </div>
+    <div class="col-sm-6">
+        <a n:href="default" class="btn btn-success btn-sm float-right">{_app.users.usersList}</a>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h6 class="m-0 font-weight-bold text-dark">{_app.users.basicInformations}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        {if $item->active}
+                            <a n:href="toggleActive!" class="btn btn-sm btn-warning float-right">{_app.users.deactivate}</a>
+                        {else}
+                            <a n:href="toggleActive!" class="btn btn-sm btn-success float-right">{_app.users.activate}</a>
+                        {/if}
+                        <a n:href="edit, $item->id" class="btn btn-sm btn-success float-right mr-1">{_app.users.edit, [name => ""]}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive table-borderless">
+                    <table class="table">
+                        <tr>
+                            <th>{_app.users.email}:</th>
+                            <td>{$item->email}</td>
+                        </tr>
+                        <tr>
+                            <th>{_app.users.name}:</th>
+                            <td>{$item->name} {$item->surname}</td>
+                        </tr>
+                        <tr>
+                            <th>{_app.users.role}:</th>
+                            <td>{_'roles.'.$item->role->intName}</td>
+                        </tr>
+                        <tr>
+                            <th>{_app.users.active}:</th>
+                            <td>{_"app.users.active" . ($item->active ? 'Yes' : 'No')}</td>
+                        </tr>
+                        <tr>
+                            <th>{_app.users.phone}:</th>
+                            <td>{$item->phoneNumber}</td>
+                        </tr>
+                        <tr>
+                            <th>{_app.users.lastLogin}:</th>
+                            <td>{$item->lastLogin|date:'d. m. Y'}</td>
+                        </tr>  <tr>
+                            <th>{_app.users.createdAt}:</th>
+                            <td>{$item->createdAt|date:'d. m. Y'}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

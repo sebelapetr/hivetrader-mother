@@ -12,8 +12,10 @@ use Nextras\Orm\Model\Model;
 
 /**
  * Model
- //* @property-read OrdersRepository $orders
- //* @property-read PostersRepository $posters
+ * @property-read UsersRepository $users
+ * @property-read RolesRepository $roles
+ * @property-read ActionsRepository $actions
+ * @property-read RightsRepository $rights
  */
 class Orm extends Model
 {

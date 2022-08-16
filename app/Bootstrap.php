@@ -18,6 +18,7 @@ class Bootstrap
         define("WWW_DIR", __DIR__.'/../www');
         define("ROOT_DIR", __DIR__.'/../');
         define("LOG_DIR", __DIR__.'/../log');
+        define("APP_DIR", __DIR__.'/../app');
 
 		$configurator->enableTracy($appDir . '/log');
 
@@ -28,13 +29,17 @@ class Bootstrap
 			->addDirectory(__DIR__)
 			->register();
 
-		$configurator->addConfig($appDir . '/app/config/common.neon');
         if (!isset($_SERVER["SESSIONNAME"]) || $_SERVER["SESSIONNAME"] !== "Console") { //todo check console
             $isApi = substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
             if ($isApi) {
                 $configurator->addConfig($appDir . '/app//config/apitte.neon');
+            } else {
+                $configurator->addConfig($appDir . '/app/config/common.neon');
             }
+        } else {
+            $configurator->addConfig($appDir . '/app/config/common.neon');
         }
+
         $configurator->addConfig($appDir . '/app//config/local.neon');
 
 		return $configurator;

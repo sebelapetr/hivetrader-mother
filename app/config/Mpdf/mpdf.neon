@@ -1,2 +1,2 @@
 services:
-	- App\AdminModule\Pdf\ExportPdf
+	#- App\AdminModule\Pdf\ExportPdf

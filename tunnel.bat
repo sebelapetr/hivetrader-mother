@@ -1,1 +1,1 @@
-ssh username@37.46.83.192
+ssh root@127.0.0.1

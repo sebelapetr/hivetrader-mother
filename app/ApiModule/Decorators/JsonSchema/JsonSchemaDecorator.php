@@ -38,6 +38,7 @@ class JsonSchemaDecorator implements IRequestDecorator
 
 		if ($endpoint->hasTag('validateJsonSchema')) {
 			$tag = $endpoint->getTag('validateJsonSchema');
+            $tag = strval($tag);
 			$jsonSchemaFilePath = sprintf("%s/ApiModule/JsonSchema/%s", APP_DIR, $tag);
 			// Does json schema file exists ?
 			if(is_file($jsonSchemaFilePath)){

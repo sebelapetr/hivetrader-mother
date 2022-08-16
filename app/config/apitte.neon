@@ -8,7 +8,7 @@ services:
         class: App\Api\Decorator\SimpleApiErrorDecorator
 
     # Controllers
-    - App\Api\V1\Controllers\PosterController
+    - App\Api\V1\Controllers\TestController
 
 api:
     debug: %debugMode%
@@ -24,7 +24,7 @@ middleware:
         -
             factory: Contributte\Middlewares\BasicAuthMiddleware
             setup:
-                - addUser('vesmirna-mapa', '$2y$10$d5LDdT5SzRC0MFXI.FCmweI3mji8CuTp0ouHfXxSTO9KERQuR.ysO') # password is Admin here
+                - addUser('test', '$2y$10$d5LDdT5SzRC0MFXI.FCmweI3mji8CuTp0ouHfXxSTO9KERQuR.ysO') # password is Admin here
         -
             factory: Contributte\Middlewares\AutoBasePathMiddleware
         tracy:
@@ -37,3 +37,8 @@ middleware:
                 - setLogger(@Tracy\Bridges\Psr\TracyToPsrLoggerAdapter, Psr\Log\LogLevel::ERROR) # Monolog and Tracy PSR3 adapter are good choice
         -
             factory: Apitte\Middlewares\ApiMiddleware # Run whole api application
+
+includes:
+    - Nextras/orm.neon
+    - Translator/translator.neon
+    - ../AdminModule/config/common.neon

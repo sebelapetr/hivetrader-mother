@@ -20,9 +20,16 @@ services:
 	- App\Router\RouterFactory::createRouter
 	latte.templateFactory:
 		factory: Nette\Bridges\ApplicationLatte\TemplateFactory
+	- App\Model\Security\Authenticator
+	- App\Model\Authorizator
+	user:
+	    class: App\Model\Security\User
 
 includes:
     - Monolog/monolog.neon
     - Console/console.neon
     - Nextras/orm.neon
     - Deployer/deployer.neon
+    - Translator/translator.neon
+    - Connectors/connectors.neon
+    - ../AdminModule/config/common.neon

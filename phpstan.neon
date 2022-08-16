@@ -12,4 +12,4 @@ parameters:
 		- app
 	checkTooWideReturnTypesInProtectedAndPublicMethods: true
 	ignoreErrors:
-		- '#Constant ROOT_DIR not found.#'
+		- '#Constant APP_DIR not found.#'

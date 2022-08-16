@@ -1,4 +1,8 @@
 parameters:
+    connectors:
+        test:
+            username: ''
+            password: ''
     deployer:
         protocol: "" # ftp|ftps
         user: ""
