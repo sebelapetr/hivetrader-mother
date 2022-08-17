@@ -43,7 +43,7 @@ stockchanges:
     informations: 'Informations'
     name: 'Name'
     ean: 'EAN'
-    supplierId: 'Supplier ID'
+    supplierInternalId: 'Supplier internal ID'
     createdAt: 'Created at'
     updatedAt: 'Updated at'
     stockChanges: 'Stock changes'

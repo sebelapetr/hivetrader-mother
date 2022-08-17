@@ -7,7 +7,7 @@ use Nextras\Orm\Entity\Entity;
 /**
  * User
  * @property int $id {primary}
- * @property string $supplierId
+ * @property string $supplierInternalId
  /* @property Product $product
  /* @property ProductBrand $productBrand
 / * @property price...
