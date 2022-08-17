@@ -29,7 +29,10 @@ class Bootstrap
 			->addDirectory(__DIR__)
 			->register();
 
-        if (!isset($_SERVER["SESSIONNAME"]) || $_SERVER["SESSIONNAME"] !== "Console") { //todo check console
+        if (
+            (!isset($_SERVER["SESSIONNAME"]) || $_SERVER["SESSIONNAME"] !== "Console") &&
+            (!isset($_SERVER["SCRIPT_NAME"]) || $_SERVER["SCRIPT_NAME"] !== "/home/mater/cmd.php")
+        ) {
             $isApi = substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
             if ($isApi) {
                 $configurator->addConfig($appDir . '/app//config/apitte.neon');

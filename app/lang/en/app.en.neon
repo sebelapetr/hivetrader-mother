@@ -47,3 +47,4 @@ stockchanges:
     createdAt: 'Created at'
     updatedAt: 'Updated at'
     stockChanges: 'Stock changes'
+    stockChangesDaily: 'Daily stock changes'

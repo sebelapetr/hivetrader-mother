@@ -54,6 +54,9 @@
 	"config": {
 		"platform": {
 			"php": "8.1"
+		},
+		"allow-plugins": {
+			"symfony/thanks": true
 		}
 	},
 	"minimum-stability": "stable"

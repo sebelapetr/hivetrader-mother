@@ -7,6 +7,7 @@ use Nextras\Orm\Repository\Repository;
 
 /**
  * @method Result|null getStockChanges(int $id)
+ * @method Result|null getStockChangesDaily(int $id, \DateTimeImmutable $from, \DateTimeImmutable $to)
  */
 class SupplierProductsRepository extends Repository{
 
