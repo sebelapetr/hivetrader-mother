@@ -7,6 +7,7 @@ services:
     #DATAGRIDS
     - App\AdminModule\Components\StockItemsDatagridFactory
     - App\AdminModule\Components\OrdersDatagridFactory
+    - App\AdminModule\Components\SupplierProductsDatagridFactory
 
     #FORMS
     - App\AdminModule\Forms\ILoginFormFactory

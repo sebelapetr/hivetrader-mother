@@ -22,3 +22,7 @@ UserForm:
 EditRightsForm:
     edit: 'Save'
     success: 'Role was saved'
+
+SelectSupplierForm:
+    supplier: "Select Supplier:"
+    submit: "Confirm select"

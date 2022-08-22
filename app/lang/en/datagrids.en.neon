@@ -7,3 +7,10 @@ OrdersDatagrid:
     totalPriceVat: 'Price inc. VAT'
     state: 'State'
     detail: 'Detail'
+
+SupplierProductsDatagrid:
+    detail: "Detail"
+    name: "Name"
+    active: "Active"
+    createdAt: "Created"
+    updatedAt: "Updated"

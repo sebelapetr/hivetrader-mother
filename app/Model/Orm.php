@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Petr Šebela
- * Date: 21. 9. 2020
- * Time: 22:45
- */
 
 namespace App\Model;
 
@@ -22,6 +16,7 @@ use Nextras\Orm\Model\Model;
  * @property-read OrderItemsRepository $orderItems
  * @property-read StocksRepository $stocks
  * @property-read StockItemsRepository $stockItems
+ * @property-read SuppliersRepository $suppliers
  * @property-read SupplierProductsRepository $supplierProducts
  */
 class Orm extends Model

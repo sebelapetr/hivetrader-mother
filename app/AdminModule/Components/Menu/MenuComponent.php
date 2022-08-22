@@ -32,10 +32,33 @@ class MenuComponent extends BaseComponent {
 
         $mother = [
             [
+                'presenter' => 'Products',
+                'presenterClean' => StringUtils::clean('Products'),
+                'icon' => 'fa-solid fa-gem',
+                'children' => [
+                    [
+                        'presenter' => 'Products',
+                        'presenterClean' => StringUtils::clean('Products'),
+                        'icon' => 'fa-solid fa-gem',
+                    ],
+                    [
+                        'presenter' => 'ProductMarketAssignation',
+                        'presenterClean' => StringUtils::clean('ProductMarketAssignation'),
+                        'icon' => 'fas fa-ban',
+                    ],
+                ],
+            ],
+            [
+                'presenter' => 'SupplierProducts',
+                'presenterClean' => StringUtils::clean('SupplierProducts'),
+                'icon' => 'fa-regular fa-gem',
+            ],
+            /*
+            [
                 'presenter' => 'StockChanges',
                 'presenterClean' => StringUtils::clean('StockChanges'),
                 'icon' => 'fas fa-chart-bar',
-            ]
+            ],*/
         ];
 
         $stock = [

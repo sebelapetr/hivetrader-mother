@@ -69,3 +69,13 @@ stockItemMovements:
 
 stockChanges:
     title: 'Stock changes'
+
+supplierProducts:
+    title: "Supplier products"
+    noSupplierSelected: "Supplier not selected."
+
+products:
+    title: "Products"
+
+productMarketAssignation:
+    title: "Product market assignation"

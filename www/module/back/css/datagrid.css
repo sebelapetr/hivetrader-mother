@@ -21,7 +21,7 @@
 }
 
 .datagrid {
-	background-color: #fff;
+	background-color: transparent;
 	box-sizing: border-box
 }
 
@@ -140,7 +140,7 @@
 
 .datagrid table thead tr.row-group-actions th {
 	border-bottom-width: 0 !important;
-	background-color: #f9f9f9
+	background-color: #00000063
 }
 
 .datagrid table thead tr.row-group-actions .datagrid-selected-rows-count {
@@ -148,8 +148,16 @@
 }
 
 .datagrid table thead tr th {
-	font-size: 90%;
-	vertical-align: top
+	text-transform: none;
+	font-weight: 400;
+}
+
+.datagrid table thead tr th a {
+	color: white;
+}
+
+.datagrid table thead tr th svg {
+	width: auto !important;
 }
 
 .datagrid table thead tr th hr {
@@ -280,7 +288,7 @@
 }
 
 .datagrid table th.col-checkbox {
-	background-color: #f9f9f9
+	background-color: #00000063
 }
 
 .datagrid table th.col-action, .datagrid table td.col-action {
@@ -487,7 +495,7 @@
 .datagrid .row-grid-bottom {
 	font-size: 0;
 	padding: 8px;
-	background-color: #f9f9f9;
+	background-color: #00000063;
 	border: 1px solid #ddd;
 	border-top: 0
 }
@@ -633,4 +641,8 @@
 	padding: 3px 20px;
 	line-height: 1.42857143;
 	font-size: 12px;
+}
+
+.datagrid .table-bordered td, th {
+	border: 1px solid #ffffff17 !important;
 }
