@@ -17,6 +17,11 @@ use Nextras\Orm\Model\Model;
  * @property-read ActionsRepository $actions
  * @property-read RightsRepository $rights
  *
+ * @property-read MarketsRepository $markets
+ * @property-read OrdersRepository $orders
+ * @property-read OrderItemsRepository $orderItems
+ * @property-read StocksRepository $stocks
+ * @property-read StockItemsRepository $stockItems
  * @property-read SupplierProductsRepository $supplierProducts
  */
 class Orm extends Model

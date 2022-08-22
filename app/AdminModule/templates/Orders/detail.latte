@@ -1,0 +1,193 @@
+{varType App\Model\Order $item}
+{block content}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="col-sm-6">
+        <h1 class="h3 mb-0 text-gray-800">{_app.orders.detail, ['number' => $item->number]}</h1>
+    </div>
+    <div class="col-sm-6">
+        <a n:href="default" class="btn btn-success btn-sm float-right">{_app.orders.ordersList}</a>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12 mb-4">
+        <div class="card">
+            <div class="card-body text-dark">
+                {var $shipping = $item->getShippingOrderItem()}
+                    {var $payment = $item->getPaymentOrderItem()}
+                <span class="font-weight-bold">{_entity.order.sentAt}:</span> {$item->sentAt|date:'d.m.Y H:i'} <br>
+                <span class="font-weight-bold">{_entity.order.state}:</span> STATE TODO <br>
+                <span class="font-weight-bold">{_entity.order.market}:</span> {$item->market->name} <br>
+                <span class="font-weight-bold">{_entity.order.paymentType}:</span> {$payment ? $payment->name : ""} <br>
+                <span class="font-weight-bold">{_entity.order.deliveryType}:</span> {$shipping ? $shipping->name : ""} <br>
+            </div>
+            <div class="card-body text-dark">
+                <span class="font-weight-bold">{_entity.order.note}:</span> <br>
+                {$item->note}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.personalData}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive table-borderless">
+                    <table class="table">
+                        <tr>
+                            <th>{_entity.order.name}:</th>
+                            <td>{$item->name} {$item->surname}</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.email}:</th>
+                            <td>{$item->email}</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.phone}:</th>
+                            <td>{$item->telephone}</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.billingAddress}:</th>
+                            <td>
+                                {$item->street}, {$item->city} {$item->zip}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.company}:</th>
+                            <td>{$item->company}</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.ic}:</th>
+                            <td>{$item->ico}</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.dic}:</th>
+                            <td>{$item->dic}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-7">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.orderState}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                todo Order process step by step
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.deliveryData}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive table-borderless">
+                    <table class="table">
+                        <tr>
+                            <th>{_entity.order.deliveryName}:</th>
+                            <td>{$item->deliveryName} {$item->deliverySurname}</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.deliveryCompany}:</th>
+                            <td>{$item->deliveryCompany}</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.deliveryAddress}:</th>
+                            <td>{$item->deliveryStreet}, {$item->deliveryCity} {$item->deliveryZip}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-7">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.orderItems}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">{_entity.orderItem.number}</th>
+                            <th scope="col">{_entity.orderItem.name}</th>
+                            <th scope="col">{_entity.orderItem.quantity}</th>
+                            <th scope="col">{_entity.orderItem.pricePieceVat}</th>
+                            <th scope="col">{_entity.orderItem.price}</th>
+                            <th scope="col">{_entity.orderItem.priceVat}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach $item->orderItems as $orderItem}
+                            <tr>
+                                <th scope="row">{$orderItem->number}</th>
+                                <td>{$orderItem->name}</td>
+                                <td>{$orderItem->quantity} pc.</td>
+                                <td>{$orderItem->pricePieceVat|number:2, ",", " "} Kč</td>
+                                <td>{$orderItem->priceVat|number:2, ",", " "} Kč</td>
+                                <td>{$orderItem->price|number:2, ",", " "} Kč</td>
+                            </tr>
+                        {/foreach}
+                        <tr>
+                            <th scope="row">{_app.orders.itemsTotal}</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="font-weight-bold">{$item->totalPriceVat|number:2, ",", " "} Kč</td>
+                            <td class="font-weight-bold">{$item->totalPrice|number:2, ",", " "} Kč</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.supplierData}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                todo supplier data by market
+
+            </div>
+        </div>
+    </div>
+</div>

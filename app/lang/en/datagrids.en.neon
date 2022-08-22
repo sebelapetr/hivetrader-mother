@@ -1,0 +1,9 @@
+OrdersDatagrid:
+    id: 'ID'
+    number: 'Number'
+    sentAt: 'Date'
+    market: 'Market'
+    name: 'Name'
+    totalPriceVat: 'Price inc. VAT'
+    state: 'State'
+    detail: 'Detail'

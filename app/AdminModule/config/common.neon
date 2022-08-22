@@ -5,6 +5,8 @@ services:
     - App\AdminModule\Components\IMenuComponentFactory
 
     #DATAGRIDS
+    - App\AdminModule\Components\StockItemsDatagridFactory
+    - App\AdminModule\Components\OrdersDatagridFactory
 
     #FORMS
     - App\AdminModule\Forms\ILoginFormFactory

@@ -8,5 +8,6 @@ use ReflectionClass;
 
 abstract class BasicDatagrid extends BaseDatagrid implements ISetupDatagrid
 {
-
+    /** @var Translator */
+    public $translator;
 }

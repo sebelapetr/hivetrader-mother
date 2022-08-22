@@ -2,8 +2,8 @@
 # Date: 22. 9. 2020
 # Time: 00:39
 
-title: 'Apiarium - Mater'
-name: 'Apiarium - Mater'
+title: 'Elvide'
+name: 'Elvide'
 
 dashboard:
     title: 'Dashboard'
@@ -48,3 +48,24 @@ stockchanges:
     updatedAt: 'Updated at'
     stockChanges: 'Stock changes'
     stockChangesDaily: 'Daily stock changes'
+
+orders:
+    title: 'Orders'
+    ordersList: 'Orders list'
+    detail: 'Order detail %number%'
+    sentAt: 'Date'
+    personalData: 'Personal data'
+    deliveryData: 'Delivery data'
+    supplierData: 'Supplier data'
+    orderItems: 'Items'
+    orderState: 'Order state'
+    itemsTotal: 'Total'
+
+stockItems:
+    title: 'Stock'
+
+stockItemMovements:
+    title: 'Stock movements'
+
+stockChanges:
+    title: 'Stock changes'

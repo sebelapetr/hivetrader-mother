@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="cs">
-<head>
-    {include "_layout/head.latte"}
-    {include "_layout/head-scripts.latte"}
-</head>
-<body class="bg-gradient-primary">
-
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
+    <head>
+        {include "_layout/head.latte"}
+        {include "_layout/head-scripts.latte"}
+    </head>
+    <body class="login-page">
+        <div class="container">
+            <!-- main page content. the place to put widgets in. usually consists of .row > .col-lg-* > .widget.  -->
+            <main id="content" class="widget-login-container" role="main">
                 {include content}
-
-            </div>
-
+                {include "_layout/footer.latte"}
+            </main>
         </div>
-
-    </div>
-
-    {include '_layout/footer-scripts.latte'}
-</body>
+        <!-- The Loader. Is shown when pjax happens -->
+        <div class="loader-wrap hiding hide">
+            <i class="fa fa-circle-o-notch fa-spin-fast"></i>
+        </div>
+        {include '_layout/footer-scripts.latte'}
+    </body>
 </html>

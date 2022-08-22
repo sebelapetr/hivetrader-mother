@@ -3,3 +3,30 @@ user:
     surname: 'Surname'
     phoneNumber: 'Phone'
     email: 'Email'
+
+
+order:
+    name: 'Name'
+    email: 'Email'
+    phone: 'Phone'
+    billingAddress: 'Billing address'
+    company: 'Company'
+    ic: 'IC'
+    dic: 'DIC'
+    deliveryName: 'Name'
+    deliveryCompany: 'Company'
+    deliveryAddress: 'Address'
+    state: 'State'
+    market: 'Market'
+    paymentType: 'Payment type'
+    deliveryType: 'Delivery type'
+    note: 'Note'
+    sentAt: 'Date'
+
+orderItem:
+    number: 'num.'
+    name: 'Name'
+    quantity: 'Quantity'
+    pricePieceVat: 'pc. w. VAT'
+    price: 'Price'
+    priceVat: 'Price VAT'

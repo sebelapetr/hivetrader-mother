@@ -22,31 +22,72 @@ class MenuComponent extends BaseComponent {
 
 	public function render(): void
 	{
-		$this->getTemplate()->menuItems =
-			[
-                [
-                    'presenter' => 'Dashboard',
-                    'presenterClean' => StringUtils::clean('Dashboard'),
-                    'icon' => 'fas fa-fw fa-tachometer-alt',
-                ],
-                [
-                    'presenter' => 'Users',
-                    'presenterClean' => StringUtils::clean('Users'),
-                    'icon' => 'fas fa-users',
-                    'children' => [
-                        [
-                            'presenter' => 'Users',
-                            'presenterClean' => StringUtils::clean('Users'),
-                            'icon' => 'fas fa-users',
-                        ],
-                        [
-                            'presenter' => 'Rights',
-                            'presenterClean' => StringUtils::clean('Rights'),
-                            'icon' => 'fas fa-ban',
-                        ],
+        $dashboard = [
+            [
+                'presenter' => 'Dashboard',
+                'presenterClean' => StringUtils::clean('Dashboard'),
+                'icon' => 'fa-solid fa-gauge',
+            ]
+        ];
+
+        $mother = [
+            [
+                'presenter' => 'StockChanges',
+                'presenterClean' => StringUtils::clean('StockChanges'),
+                'icon' => 'fas fa-chart-bar',
+            ]
+        ];
+
+        $stock = [
+            [
+                'presenter' => 'StockItems',
+                'presenterClean' => StringUtils::clean('StockItems'),
+                'icon' => 'fas fa-warehouse',
+            ],
+            [
+                'presenter' => 'StockItemMovements',
+                'presenterClean' => StringUtils::clean('StockItemMovements'),
+                'icon' => 'fas fa-exchange-alt',
+            ]
+        ];
+
+        $market = [
+            [
+                'presenter' => 'Orders',
+                'presenterClean' => StringUtils::clean('Orders'),
+                'icon' => 'fas fa-shopping-cart'
+            ]
+        ];
+
+        $settings = [
+            [
+                'presenter' => 'Users',
+                'presenterClean' => StringUtils::clean('Users'),
+                'icon' => 'fas fa-users',
+                'children' => [
+                    [
+                        'presenter' => 'Users',
+                        'presenterClean' => StringUtils::clean('Users'),
+                        'icon' => 'fas fa-users',
                     ],
-                ]
-			];
+                    [
+                        'presenter' => 'Rights',
+                        'presenterClean' => StringUtils::clean('Rights'),
+                        'icon' => 'fas fa-ban',
+                    ],
+                ],
+            ]
+        ];
+
+        $menu = [
+            "dashboard" => $dashboard,
+            "market" => $market,
+            "stock" => $stock,
+            "mother" => $mother,
+            "settings" => $settings
+        ];
+
+		$this->getTemplate()->menuItems = $menu;
 		$this->setTemplateFile();
 		$this->getTemplate()->render();
 	}

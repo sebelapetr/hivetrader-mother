@@ -10,11 +10,14 @@ use Ublaboo\DataGrid\Exception\DataGridFilterNotFoundException;
 class BaseDatagrid extends DataGrid
 {
 	protected Orm $orm;
+    public string $langDomain;
 
 	public function __construct(Orm $orm, Nette\ComponentModel\IContainer $parent = null, ?string $name = null)
 	{
 		parent::__construct($parent, $name);
 		$this->orm = $orm;
+        $reflect = new \ReflectionClass($this);
+        $this->langDomain = "datagrids.".$reflect->getShortName();
 	}
 
 	public function render(): void
