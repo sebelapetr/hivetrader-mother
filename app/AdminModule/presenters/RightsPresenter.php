@@ -20,32 +20,19 @@ class RightsPresenter extends BaseAppPresenter {
         $this->getTemplate()->roles = $this->orm->roles->findAll();
     }
 
-
-    public function actionDefault(): void
+    public function renderDefault(int $roleId = null): void
     {
-
-    }
-
-    public function renderDefault(): void
-    {
-
-    }
-
-    public function actionEdit(int $id): void
-    {
-        /** @var Role|null $role */
-        $role = $this->orm->roles->getById($id);
-        if ($role == null) {
-            $this->flashMessage($this->translator->translate("common.roleNotFound"));
-            $this->redirect("default");
+        if ($roleId) {
+            $role = $this->orm->roles->getById($roleId);
+            if ($role) {
+                $this->editRole = $role;
+                $this->getTemplate()->role = $role;
+            }
+        } else {
+            $this->getTemplate()->users = $this->orm->users->findAll()->orderBy('active', 'DESC')->orderBy('name');
         }
-        $this->editRole = $role;
     }
 
-    public function renderEdit(): void
-    {
-        $this->getTemplate()->editRole = $this->editRole;
-    }
 
     public function createComponentEditRightsForm(string $name): ?IComponent
     {

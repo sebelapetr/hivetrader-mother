@@ -14,13 +14,13 @@ UserForm:
     surname: 'Surname'
     phoneNumber: 'Phone number'
     role: 'Role'
-    edit: 'Edit'
+    edit: 'Save user'
     add: 'Add'
     userEdited: 'User was eddited'
     userAdded: 'User was added'
 
 EditRightsForm:
-    edit: 'Save'
+    edit: 'Save rights'
     success: 'Role was saved'
 
 SelectSupplierForm:

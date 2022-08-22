@@ -17,4 +17,5 @@ use Nextras\Orm\Relationships\ManyHasMany;
 class Role extends Entity
 {
     const INT_NAME_ADMIN = "ADMIN";
+    const INT_NAME_SUPPORT = "SUPPORT";
 }

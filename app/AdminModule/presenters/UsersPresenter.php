@@ -42,6 +42,7 @@ class UsersPresenter extends BaseAppPresenter
 
     public function actionDetail(int $id): void
     {
+        $this->redirect("default"); //not ready yet. Use overview
         /** @var User|null $user */
         $user = $this->orm->users->getById($id);
         if ($user == null) {
@@ -77,11 +78,12 @@ class UsersPresenter extends BaseAppPresenter
         $this->getTemplate()->item = $this->editUser;
     }
 
-    public function handleToggleActive(): void
+    public function handleToggleActive(int $userId): void
     {
-        if ($this->editUser !== null) {
-            $this->editUser->active = !$this->editUser->active;
-            $this->orm->persistAndFlush($this->editUser);
+        $user = $this->orm->users->getById($userId);
+        if ($user !== null) {
+            $user->active = !$user->active;
+            $this->orm->persistAndFlush($user);
             $this->flashMessage($this->translator->translate("common.userDeactivated"), FlashMessages::SUCCESS);
             $this->redirect('this');
         }

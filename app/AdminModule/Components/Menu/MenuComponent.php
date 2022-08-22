@@ -79,6 +79,11 @@ class MenuComponent extends BaseComponent {
                 'presenter' => 'Orders',
                 'presenterClean' => StringUtils::clean('Orders'),
                 'icon' => 'fas fa-shopping-cart'
+            ],
+            [
+                'presenter' => 'Marketing',
+                'presenterClean' => StringUtils::clean('Marketing'),
+                'icon' => 'fa-solid fa-bullhorn'
             ]
         ];
 
@@ -105,7 +110,7 @@ class MenuComponent extends BaseComponent {
         $menu = [
             "dashboard" => $dashboard,
             "market" => $market,
-            "stock" => $stock,
+            //"stock" => $stock,
             "mother" => $mother,
             "settings" => $settings
         ];

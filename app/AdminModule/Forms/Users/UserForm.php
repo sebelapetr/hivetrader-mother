@@ -32,7 +32,7 @@ class UserForm extends BaseComponent
     {
         $form = new Nette\Application\UI\Form();
 
-        $form->addText('email', $this->translator->translate($this->langDomain.'.email'))
+        $form->addEmail('email', $this->translator->translate($this->langDomain.'.email'))
             ->setHtmlAttribute('class', 'form-control')
             ->setRequired();
 

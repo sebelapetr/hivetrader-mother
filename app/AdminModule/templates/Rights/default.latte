@@ -1,32 +1,35 @@
 {block content}
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <div class="col-sm-6">
-        <h1 class="h3 mb-0 text-gray-800">{_app.rights.title}</h1>
-    </div>
-</div>
-
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item active">{_app.users.title}</li>
+    <li class="breadcrumb-item active">{_app.rights.title}</li>
+</ol>
+<h1 class="page-title">{_app.rights.title}</h1>
 
 <div class="row">
-    <div class="col-sm-3">
-        <div class="card mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-dark">{_app.rights.role}</h6>
-            </div>
-            <ul class="list-group">
-                {foreach $roles as $role}
-                    <a n:href="edit, $role->id"><li class="list-group-item">{_'roles.'.$role->intName}</li></a>
-                {/foreach}
-            </ul>
-        </div>
+    <div class="email-folders col-lg-3 col-xl-2">
+        <ul class="nav flex-column nav-pills nav-stacked nav-email-folders">
+
+            {foreach $roles as $roleEnt}
+                <li class="nav-item {if isset($role) && $roleEnt->id === $role->id}active{/if} mt">
+                    <a class="nav-link" n:href="this, $roleEnt->id">
+                        {_'roles.'.$roleEnt->intName}
+                    </a>
+                </li>
+            {/foreach}
+        </ul>
     </div>
-    <div class="col-sm-9">
-        <div class="card mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-dark">{_app.rights.edit, ['name' => null]}</h6>
+    <div class="col-lg-9 col-xl-10">
+        <section class="widget">
+            <div class="widget-body">
+                {if isset($role) && $role !== null}
+                    {control editRightsForm}
+                {else}
+                    <div class="alert alert-warning alert-transparent alert-sm">
+                        {_app.rights.chooseRole}
+                    </div>
+                {/if}
             </div>
-            <div class="card-body">
-                {_app.rights.chooseRole}
-            </div>
-        </div>
+        </section>
     </div>
 </div>

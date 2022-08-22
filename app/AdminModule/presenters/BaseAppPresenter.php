@@ -57,7 +57,7 @@ abstract class BaseAppPresenter extends BasePermissonPresenter
     {
         parent::beforeRender();
         $prefixedTranslator = $this->translator->createPrefixedTranslator('app');
-        $this->getTemplate()->title = $prefixedTranslator->translate(strtolower($this->getPureName()).'.title');
+        $this->getTemplate()->title = $prefixedTranslator->translate(lcfirst($this->getPureName()).'.title');
     }
 
     public function createComponentMenuComponent(string $name): MenuComponent

@@ -1,0 +1,238 @@
+{varType App\Model\SupplierProduct $supplierProduct}
+{var $descrtiption = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean fermentum risus id tortor. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nullam faucibus mi quis velit. Nulla non arcu lacinia neque faucibus fringilla. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Mauris dictum facilisis augue. Aliquam erat volutpat. Donec vitae arcu. Vivamus porttitor turpis ac leo. Mauris dolor felis, sagittis at, luctus sed, aliquam non, tellus. Praesent id justo in neque elementum ultrices. Integer pellentesque quam vel velit. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Curabitur bibendum justo non orci. Maecenas libero. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Integer malesuada. Nulla pulvinar eleifend sem. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu.Integer imperdiet lectus quis justo. In convallis. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quo"}
+
+{block content}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item active"><a n:href="default">{_app.supplierProducts.title}</a></li>
+        <li class="breadcrumb-item active"><a n:href="default, $supplierProduct->supplier->id">{$supplierProduct->supplier->name}</a></li>
+        <li class="breadcrumb-item active">{$supplierProduct->name}</li>
+    </ol>
+    <h1 class="page-title">{$supplierProduct->name}</h1>
+    <section class="widget">
+        <div class="widget-body">
+            <div class="row">
+                <div class="col-sm-4 mt-2">
+                    <div style="text-align: center">
+                        <img src="{$basePath}/image/test-image.jpg" alt="test photo" class="img-fluid" style="height: 400px;border-radius: 4px" />
+                    </div>
+                </div>
+                <div class="col-sm-4 mt-2">
+                    <h3>Description</h3>
+                    <p>{$descrtiption|truncate:1000}</p>
+                </div>
+                <div class="col-sm-4 mt-2">
+                    <h3>Information</h3>
+                    <h5 class="mt-3">{_app.stockchanges.ean}:</h5>
+                    {$supplierProduct->ean}
+                    <h5 class="mt-3">{_app.stockchanges.supplierInternalId}:</h5>
+                    {$supplierProduct->supplierInternalId}
+                    <h5 class="mt-3">{_app.stockchanges.createdAt}:</h5>
+                    {$supplierProduct->createdAt|date:'d. m. Y H:i'}
+                    <h5 class="mt-3">{_app.stockchanges.updatedAt}:</h5>
+                    {$supplierProduct->updatedAt|date:'d. m. Y H:i'}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="widget">
+        <header>
+            <h4>{_app.stockchanges.stockChangesDaily}</h4>
+        </header>
+        <div class="widget-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="mt mb" id="flot-daily-stock-changes" style="width: 100%; height: 260px;"></div>
+                    <div class="chart-tooltip" id="flot-daily-stock-changes-tooltip" style="opacity: 0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="widget">
+        <header>
+            <h4>{_app.stockchanges.stockChanges}</h4>
+        </header>
+        <div class="widget-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="mt mb" id="flot-stock-changes" style="width: 100%; height: 260px;"></div>
+                    <div class="chart-tooltip" id="flot-stock-changes-tooltip" style="opacity: 0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}
+
+{block js}
+    <script src="{$basePath}/node_modules/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src='{$basePath}/node_modules/flotanimator/jquery.flot.animator.min.js'></script>
+    <script src="{$basePath}/node_modules/flot/jquery.flot.js"></script>
+    <script src="{$basePath}/node_modules/flot/jquery.flot.time.js"></script>
+
+    <script>
+        var colors =  {
+            'white': '#fff',
+            'black': '#000',
+            'gray-100': '#f8f9fa',
+            'gray-200': '#e9ecef',
+            'gray-300': '#dee2e6',
+            'gray-400': '#ced4da',
+            'gray-500': '#adb5bd',
+            'gray-600': '#6c757d',
+            'gray-700': '#495057',
+            'gray-800': '#343a40',
+            'gray-900': '#212529',
+            'brand-primary': '#1870dc',
+            'brand-success': '#58d777',
+            'brand-danger': '#fd5f00',
+            'brand-warning': '#ca8500',
+            'brand-info': '#3aa09c',
+            'body-bg': '#fafbff'
+        };
+
+        function initDailyStockChangesFlot() {
+            var chartData = [];
+
+            {foreach $stockChangesData as $key => $value}
+                chartData.push([{$key}, {$value}])
+            {/foreach}
+            var $chart = $("#flot-daily-stock-changes");
+            var $tooltip = $('#flot-daily-stock-changes-tooltip');
+
+            function _initChart(){
+                var plot = $.plotAnimator($chart, [{
+                    label: "Traffic",
+                    data: chartData,
+                    animator: { steps: 60, duration: 1000, start:0 },
+                    lines: {
+                        fill: 1,
+                        lineWidth: 0
+                    },
+                    color: colors['brand-success']
+                }],{
+                    xaxis: {
+                        mode: "time",
+                        timezone: "browser",
+                        timeformat:"%d.%m.%Y %H:%M",
+                        font :{
+                            lineHeight: 13,
+                            color: colors['gray-500']
+                        }
+                    },
+                    yaxis: {
+                        tickDecimals: 0,
+                        font :{
+                            lineHeight: 13,
+                            color: colors['gray-500']
+                        }
+                    },
+                    grid: {
+                        backgroundColor: "transparent",
+                        borderWidth:1,
+                        borderColor: "transparent",
+                        margin:0,
+                        minBorderMargin:0,
+                        labelMargin:20,
+                        hoverable: true,
+                        clickable: true,
+                        mouseActiveRadius:6
+                    },
+                    legend: false
+                });
+
+                $chart.on("plothover", function (event, pos, item) {
+                    if (item) {
+                        var x = item.datapoint[0].toFixed(2),
+                            y = item.datapoint[1].toFixed(2);
+
+                        $tooltip.html(item.series.label + " at " + x + ": " + y)
+                            .css({
+                                top: item.pageY + 5 - window.scrollY,
+                                left: item.pageX + 5 - window.scrollX
+                            })
+                            .fadeIn(200);
+                    } else {
+                        $tooltip.hide();
+                    }
+                });
+            }
+
+            _initChart();
+        }
+
+        function initStockChangesFlot() {
+
+            var chartData = [];
+            {foreach $stockChangesDailyData as $key => $value}
+                chartData.push([{$key}, {$value}])
+            {/foreach}
+            console.log(chartData);
+            var $chart = $("#flot-stock-changes");
+            var $tooltip = $('#flot-stock-changes-tooltip');
+
+            function _initChart(){
+                var plot = $.plotAnimator($chart, [{
+                    label: "Traffic",
+                    data: chartData,
+                    animator: { steps: 60, duration: 1000, start:0 },
+                    lines: {
+                        fill: 1,
+                        lineWidth: 0
+                    },
+                    color: colors['brand-success']
+                }],{
+                    xaxis: {
+                        mode: "time",
+                        timezone: "browser",
+                        timeformat:"%d.%m.%Y %H:%M",
+                        font :{
+                            lineHeight: 13,
+                            color: colors['gray-500']
+                        }
+                    },
+                    yaxis: {
+                        tickDecimals: 0,
+                        font :{
+                            lineHeight: 13,
+                            color: colors['gray-500']
+                        }
+                    },
+                    grid: {
+                        backgroundColor: "transparent",
+                        borderWidth:1,
+                        borderColor: "transparent",
+                        margin:0,
+                        minBorderMargin:0,
+                        labelMargin:20,
+                        hoverable: true,
+                        clickable: true,
+                        mouseActiveRadius:6
+                    },
+                    legend: false
+                });
+
+                $chart.on("plothover", function (event, pos, item) {
+                    if (item) {
+                        var x = item.datapoint[0].toFixed(2),
+                            y = item.datapoint[1].toFixed(2);
+
+                        $tooltip.html(item.series.label + " at " + x + ": " + y)
+                            .css({
+                                top: item.pageY + 5 - window.scrollY,
+                                left: item.pageX + 5 - window.scrollX
+                            })
+                            .fadeIn(200);
+                    } else {
+                        $tooltip.hide();
+                    }
+                });
+            }
+
+            _initChart();
+        }
+
+        initDailyStockChangesFlot();
+        initStockChangesFlot();
+    </script>
+{/block}
