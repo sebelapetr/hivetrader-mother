@@ -5,8 +5,6 @@ namespace App\Model;
 use Nette\Utils\DateTime;
 use Nextras\Dbal\Utils\DateTimeImmutable;
 use Nextras\Orm\Entity\Entity;
-use Nextras\Orm\Relationships\OneHasMany;
-use Nextras\Orm\Relationships\OneHasOne;
 
 /**
  * Class OrderStateChange

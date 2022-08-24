@@ -1,7 +1,7 @@
 {varType App\Model\Order $item}
 {block content}
 <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item">{_common.home}</li>
     <li class="breadcrumb-item active"><a n:href="default">{_app.orders.title}</a></li>
     <li class="breadcrumb-item active">{_app.orders.detail, ['number' => $item->number]}</li>
 </ol>
@@ -141,9 +141,9 @@
                                 <td class="font-weight-bold">{$orderItem->number}</td>
                                 <td>{$orderItem->name}</td>
                                 <td>{$orderItem->quantity} pc.</td>
-                                <td>{$orderItem->pricePieceVat|number:2, ",", " "} Kč</td>
-                                <td>{$orderItem->priceVat|number:2, ",", " "} Kč</td>
-                                <td>{$orderItem->price|number:2, ",", " "} Kč</td>
+                                <td>{$orderItem->pricePieceVat|number:2, ",", " "} {_common.tempCurrency}</td>
+                                <td>{$orderItem->priceVat|number:2, ",", " "} {_common.tempCurrency}</td>
+                                <td>{$orderItem->price|number:2, ",", " "} {_common.tempCurrency}</td>
                             </tr>
                         {/foreach}
                         <tr>
@@ -151,8 +151,8 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td class="font-weight-bold">{$item->totalPriceVat|number:2, ",", " "} Kč</td>
-                            <td class="font-weight-bold">{$item->totalPrice|number:2, ",", " "} Kč</td>
+                            <td class="font-weight-bold">{$item->totalPriceVat|number:2, ",", " "} {_common.tempCurrency}</td>
+                            <td class="font-weight-bold">{$item->totalPrice|number:2, ",", " "} {_common.tempCurrency}</td>
                         </tr>
                         </tbody>
                     </table>

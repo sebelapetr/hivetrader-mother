@@ -14,3 +14,7 @@ userNotFound: 'User not found'
 logout: 'Logout'
 cancel: 'Cancel'
 confirmLogout: 'Confirm logout.'
+home: "Home"
+assign: "Assign"
+
+tempCurrency: "Kč"

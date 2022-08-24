@@ -3,7 +3,7 @@
 {varType App\Model\Order $order}
 {block content}
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item">{_common.home}</li>
         <li class="breadcrumb-item active">{_app.dashboard.title}</li>
     </ol>
     <h1 class="page-title">{_app.dashboard.title}</h1>
@@ -12,7 +12,7 @@
         <div class="col-lg-12 col-xl-12">
             <section class="widget">
                 <header>
-                    <h3>New Orders</h3>
+                    <h3>{_app.dashboard.newOrders}</h3>
                 </header>
                 <div class="widget-body">
                     {if count($newOrders) > 0}
@@ -35,7 +35,7 @@
                                     <td>{$order->name} {$order->surname}</td>
                                     <td>{$order->telephone}</td>
                                     <td>{$order->email}</td>
-                                    <td>{$order->totalPriceVat|number:2,","," "} Kč</td>
+                                    <td>{$order->totalPriceVat|number:2,","," "} {_common.tempCurrency}</td>
                                     <td>
                                         <a n:href="Orders:detail, $order->id" class="btn btn-outline-info btn-rounded width-100 mr-2" role="button">
                                             {_common.detail}
@@ -55,7 +55,7 @@
         <div class="col-lg-12 col-xl-12">
             <section class="widget">
                 <header>
-                    <h3>Not Completed Orders</h3>
+                    <h3>{_app.dashboard.notCompletedOrders}</h3>
                 </header>
                 <div class="widget-body">
                     {if count($notCompletedOrders) > 0}
@@ -80,7 +80,7 @@
                                     <td>{$order->name} {$order->surname}</td>
                                     <td>{$order->telephone}</td>
                                     <td>{$order->email}</td>
-                                    <td>{$order->totalPriceVat|number:2,","," "} Kč</td>
+                                    <td>{$order->totalPriceVat|number:2,","," "} {_common.tempCurrency}</td>
                                     <td>
                                         <a n:href="Orders:detail, $order->id" class="btn btn-outline-info btn-rounded width-100 mr-2" role="button">
                                             {_common.detail}

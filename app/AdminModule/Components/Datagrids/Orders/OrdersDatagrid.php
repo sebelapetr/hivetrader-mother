@@ -55,7 +55,7 @@ class OrdersDatagrid extends BasicDatagrid
 
         $this->addColumnText("totalPriceVat", $this->translator->translate($this->langDomain.'.totalPriceVat'))
             ->setRenderer(function (Order $order) {
-                return number_format($order->totalPriceVat, 2, ",", " ") . " Kč";
+                return number_format($order->totalPriceVat, 2, ",", " ") . " " . $this->translator->translate("common.tempCurrency");
             })
             ->setSortable()
             ->setFilterText();

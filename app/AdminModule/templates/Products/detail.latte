@@ -5,7 +5,7 @@
 
 {block content}
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item">{_common.home}</li>
         <li class="breadcrumb-item active"><a n:href="default">{_app.products.title}</a></li>
         <li class="breadcrumb-item active">{$product->name}</li>
     </ol>
@@ -40,7 +40,7 @@
             <section class="widget">
                 <header>
                     <h3>
-                        Assigned Markets
+                        {_app.products.assignedMarkets}
                     </h3>
                 </header>
                 <div class="widget-body">
@@ -49,7 +49,7 @@
                             <li class="nav-item" n:foreach="$assignedMarkets as $marketId => $marketProduct"><a class="nav-link {first}active{/first}" href="#assigned-market-{$marketId}" data-toggle="tab">{$marketProduct->market->name}</a></li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#assigned-market-assign" data-toggle="tab">
-                                    <button class="btn btn-outline-primary btn-rounded width-100 mb-3 mr-3" role="button"><i class="fa-solid fa-plus w-auto"></i> Assign</button>
+                                    <button class="btn btn-outline-primary btn-rounded width-100 mb-3 mr-3" role="button"><i class="fa-solid fa-plus w-auto"></i> {_common.assign}</button>
                                 </a>
                             </li>
                         </ul>
@@ -80,7 +80,7 @@
             <section class="widget">
                 <header>
                     <h3>
-                        Stock Changes
+                        {_app.products.stockChanges}
                     </h3>
                 </header>
                 <div class="widget-body">

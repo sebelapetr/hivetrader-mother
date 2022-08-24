@@ -1,6 +1,6 @@
 {block content}
 <ol class="breadcrumb">
-    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item">{_common.home}</li>
     <li class="breadcrumb-item active">{_app.users.title}</li>
     <li class="breadcrumb-item active"><a n:href="default">{_app.users.title}</a></li>
     <li class="breadcrumb-item active">{if $item}{_app.users.edit, [name => $item->name . ' ' . $item->surname]}{else}{_app.users.add}{/if}</li>

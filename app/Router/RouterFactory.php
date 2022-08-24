@@ -17,7 +17,6 @@ final class RouterFactory
 	{
 		$router = new RouteList;
 
-
         $router[] = $routerAdmin = new RouteList("Admin");
         $routerAdmin[] = new Route('<presenter>/<action>[/<id>]',  'Authentication:default');
 

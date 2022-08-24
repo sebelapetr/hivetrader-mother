@@ -7,6 +7,8 @@ name: 'Elvide'
 
 dashboard:
     title: 'Dashboard'
+    newOrders: "New Orders"
+    notCompletedOrders: "Not Completed Orders"
     notNewOrders: "There are not any new Orders."
     notProcessingOrders: "There are not any Orders in process."
 
@@ -64,6 +66,8 @@ orders:
     itemsTotal: 'Total'
     stateChanges: "State changes"
     orderProcessWalkthrough: "Order process walkthrough"
+    description: "Description"
+    information: "Information"
 
 stockItems:
     title: 'Stock'
@@ -80,6 +84,8 @@ supplierProducts:
 
 products:
     title: "Products"
+    assignedMarkets: "Assigned Markets"
+    stockChanges: "Stock Changes"
 
 productMarketAssignation:
     title: "Product market assignation"

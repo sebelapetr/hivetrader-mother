@@ -7,7 +7,6 @@ namespace App;
 use Nette\Bootstrap\Configurator;
 use Tracy\Debugger;
 
-
 class Bootstrap
 {
 
@@ -15,6 +14,7 @@ class Bootstrap
 	{
 		$configurator = new Configurator;
 		$appDir = dirname(__DIR__);
+
         define("WWW_DIR", __DIR__.'/../www');
         define("ROOT_DIR", __DIR__.'/../');
         define("LOG_DIR", __DIR__.'/../log');
@@ -31,7 +31,7 @@ class Bootstrap
 
         if (
             (!isset($_SERVER["SESSIONNAME"]) || $_SERVER["SESSIONNAME"] !== "Console") &&
-            (!isset($_SERVER["SCRIPT_NAME"]) || $_SERVER["SCRIPT_NAME"] !== "/home/mater/cmd.php")
+            (!isset($_SERVER["SCRIPT_NAME"]) || $_SERVER["SCRIPT_NAME"] !== "/home/mater/cmd.php") //todo better solution
         ) {
             $isApi = substr($_SERVER['REQUEST_URI'], 0, 4) === '/api';
             if ($isApi) {

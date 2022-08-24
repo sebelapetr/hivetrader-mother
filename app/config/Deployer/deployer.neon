@@ -37,10 +37,10 @@ deployer:
 				# Common
 				- .git*
 				- .idea*
-				- composer.*
 				- .htaccess
 				- readme.md
 				- deploy.ini.tmp
+				- tunnel.bat
 
 				# Application
 				- /_doc
@@ -49,14 +49,16 @@ deployer:
 				- /db
 				- /log
 				- /temp
-				- /www/css/*
-				- /www/fonts/*
-				- /www/js/*
-				- /www/module/*
-				- tunnel.bat
-
-				#- /vendor/composer/tmp*
+				- /src
 				- /vendor
+
+				# Root
+				- /www/fonts/*
+				- /www/module/webfonts
+				- /www/node_modules
+				- /www/robots.txt
+
+				#TODO VENDOR UPDATE PIPELINES
 
 			before:
 			after:
