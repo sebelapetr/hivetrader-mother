@@ -643,6 +643,6 @@
 	font-size: 12px;
 }
 
-.datagrid .table-bordered td, th {
+.datagrid .table-bordered td, .datagrid .table-bordered th {
 	border: 1px solid #ffffff17 !important;
 }

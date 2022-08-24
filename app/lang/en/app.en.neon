@@ -7,6 +7,8 @@ name: 'Elvide'
 
 dashboard:
     title: 'Dashboard'
+    notNewOrders: "There are not any new Orders."
+    notProcessingOrders: "There are not any Orders in process."
 
 users:
     title: 'Users'
@@ -56,10 +58,12 @@ orders:
     sentAt: 'Date'
     personalData: 'Personal data'
     deliveryData: 'Delivery data'
-    supplierData: 'Supplier data'
+    supplierBillingData: 'Supplier billing data'
     orderItems: 'Items'
     orderState: 'Order state'
     itemsTotal: 'Total'
+    stateChanges: "State changes"
+    orderProcessWalkthrough: "Order process walkthrough"
 
 stockItems:
     title: 'Stock'

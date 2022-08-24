@@ -26,3 +26,11 @@ EditRightsForm:
 SelectSupplierForm:
     supplier: "Select Supplier:"
     submit: "Confirm select"
+
+AssignMarketProductForm:
+    market: "Market"
+    name: "Name"
+    priceWithVat: "Price with VAT"
+    number: "Number"
+    assign: "Assign Product"
+    productAssigned: "Product sucessfully asigned"

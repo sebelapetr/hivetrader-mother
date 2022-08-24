@@ -22,4 +22,34 @@ class OrdersRepository extends Repository{
         return [Order::class];
     }
 
+    public function findNewOrders(): ICollection
+    {
+        return $this->findBy([
+           "state" => Order::STATE_NEW
+        ])->orderBy("sentAt", "ASC");
+    }
+
+    public function findNotCompletedOrders(): ICollection
+    {
+        return $this->findBy([
+            "state" => [
+                Order::STATE_CONFIRMED,
+                Order::STATE_PROCESSING,
+                Order::STATE_WAITING_FOR_DELIVERY,
+                Order::STATE_WAITING_FOR_PICKUP
+            ]
+        ])->orderBy("sentAt", "ASC");
+    }
+
+    public function findCompletedOrders(): ICollection
+    {
+        return $this->findBy([
+            "state" => [
+                Order::STATE_COMPLETED,
+                Order::STATE_STORNO,
+                Order::STATE_RETURNED
+            ]
+        ])->orderBy("sentAt", "ASC");
+    }
+
 }

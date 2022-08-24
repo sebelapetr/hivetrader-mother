@@ -14,3 +14,10 @@ SupplierProductsDatagrid:
     active: "Active"
     createdAt: "Created"
     updatedAt: "Updated"
+
+ProductsDatagrid:
+    detail: "Detail"
+    name: "Name"
+    createdAt: "Created"
+    updatedAt: "Updated"
+    ean: "EAN"

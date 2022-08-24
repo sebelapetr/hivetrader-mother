@@ -1,0 +1,109 @@
+{varType App\Model\Product $product}
+{varType App\Model\MarketProduct $marketProduct}
+{varType array $assignedMarkets}
+{var $descrtiption = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean fermentum risus id tortor. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nullam faucibus mi quis velit. Nulla non arcu lacinia neque faucibus fringilla. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Mauris dictum facilisis augue. Aliquam erat volutpat. Donec vitae arcu. Vivamus porttitor turpis ac leo. Mauris dolor felis, sagittis at, luctus sed, aliquam non, tellus. Praesent id justo in neque elementum ultrices. Integer pellentesque quam vel velit. Nulla turpis magna, cursus sit amet, suscipit a, interdum id, felis. Curabitur bibendum justo non orci. Maecenas libero. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Integer malesuada. Nulla pulvinar eleifend sem. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu.Integer imperdiet lectus quis justo. In convallis. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quo"}
+
+{block content}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item active"><a n:href="default">{_app.products.title}</a></li>
+        <li class="breadcrumb-item active">{$product->name}</li>
+    </ol>
+    <h1 class="page-title">{$product->name}</h1>
+    <section class="widget">
+        <div class="widget-body">
+            <div class="row">
+                <div class="col-sm-4 mt-2">
+                    <div style="text-align: center">
+                        <img src="{$basePath}/image/test-image.jpg" alt="test photo" class="img-fluid" style="height: 400px;border-radius: 4px" />
+                    </div>
+                </div>
+                <div class="col-sm-4 mt-2">
+                    <h3>Description</h3>
+                    <p>{$descrtiption|truncate:1000}</p>
+                </div>
+                <div class="col-sm-4 mt-2">
+                    <h3>Information</h3>
+                    <h5 class="mt-3">{_entity.product.ean}:</h5>
+                    {$product->ean}
+                    <h5 class="mt-3">{_entity.product.createdAt}:</h5>
+                    {$product->createdAt|date:'d. m. Y H:i'}
+                    <h5 class="mt-3">{_entity.product.updatedAt}:</h5>
+                    {$product->updatedAt|date:'d. m. Y H:i'}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="row">
+        <div class="col-lg-6 col-xl-6">
+            <section class="widget">
+                <header>
+                    <h3>
+                        Assigned Markets
+                    </h3>
+                </header>
+                <div class="widget-body">
+                    <div class="tabbable tabs-left mb-lg">
+                        <ul id="tabs2" class="nav nav-tabs flex-column">
+                            <li class="nav-item" n:foreach="$assignedMarkets as $marketId => $marketProduct"><a class="nav-link {first}active{/first}" href="#assigned-market-{$marketId}" data-toggle="tab">{$marketProduct->market->name}</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#assigned-market-assign" data-toggle="tab">
+                                    <button class="btn btn-outline-primary btn-rounded width-100 mb-3 mr-3" role="button"><i class="fa-solid fa-plus w-auto"></i> Assign</button>
+                                </a>
+                            </li>
+                        </ul>
+                        <div id="tabs2c" class="tab-content">
+                            <div n:foreach="$assignedMarkets as $marketId => $marketProduct" class="tab-pane {first}active{/first}" id="assigned-market-{$marketId}">
+                                <h5 class="mt-3">{_entity.marketProduct.name}:</h5>
+                                {$marketProduct->name}
+                                <h5 class="mt-3">{_entity.marketProduct.number}:</h5>
+                                {$marketProduct->number}
+                                <h5 class="mt-3">{_entity.marketProduct.totalSales}:</h5>
+                                {$marketProduct->saleQuantity}
+                                <h5 class="mt-3">{_entity.marketProduct.active}:</h5>
+                                {$marketProduct->active ? "Yes" : "No"}
+                                <h5 class="mt-3">{_entity.marketProduct.createdAt}:</h5>
+                                {$marketProduct->createdAt|date:'d. m. Y H:i'}
+                                <h5 class="mt-3">{_entity.marketProduct.updatedAt}:</h5>
+                                {$marketProduct->updatedAt|date:'d. m. Y H:i'}
+                            </div>
+                            <div class="tab-pane" id="assigned-market-assign">
+                                {control assignMarketProductForm}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-6 col-xl-6">
+            <section class="widget">
+                <header>
+                    <h3>
+                        Stock Changes
+                    </h3>
+                </header>
+                <div class="widget-body">
+                    <div class="tabbable tabs-left mb-lg">
+                        <ul id="tabs2" class="nav nav-tabs flex-column">
+                            <li class="nav-item"><a class="nav-link active" href="#stock-changes-total" data-toggle="tab">Total</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#stock-changes-1" data-toggle="tab">Noviko</a></li>
+                        </ul>
+                        <div id="tabs2c" class="tab-content">
+                            <div class="tab-pane active" id="stock-changes-total">
+                                Chart
+                            </div>
+                            <div class="tab-pane active" id="stock-changes-1">
+                                Chart
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+{/block}
+
+{block js}
+{/block}

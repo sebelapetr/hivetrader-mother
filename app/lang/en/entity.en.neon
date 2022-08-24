@@ -22,6 +22,17 @@ order:
     deliveryType: 'Delivery type'
     note: 'Note'
     sentAt: 'Date'
+    number: "Number"
+    totalPriceVat: "Total price inc. TAX"
+    stateNEW: "New"
+    stateCONFIRMED: "Confirmed"
+    statePROCESSING: "Processing"
+    stateWAITING_FOR_DELIVERY: "Waiting for delivery"
+    stateWAITING_FOR_PICKUP: "Waiting for pickup"
+    stateSTATE_COMPLETED: "State completed"
+    stateSTORNO: "Storno"
+    stateRETURNED: "Returned"
+
 
 orderItem:
     number: 'num.'
@@ -30,3 +41,21 @@ orderItem:
     pricePieceVat: 'pc. w. VAT'
     price: 'Price'
     priceVat: 'Price VAT'
+
+marketProduct:
+    number: "Number"
+    name: "Name"
+    totalSales: "Total sales"
+    active: "Active"
+    createdAt: "Created"
+    updatedAt: "Updated"
+
+product:
+    ean: "EAN"
+    createdAt: "Created"
+    updatedAt: "Updated"
+
+orderStateChange:
+    state: "State"
+    createdAt: "Created"
+    createdBy: "Author"

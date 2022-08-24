@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Nextras\Orm\Entity\Entity;
 use Nextras\Orm\Entity\IEntity;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * User
@@ -19,6 +20,7 @@ use Nextras\Orm\Entity\IEntity;
  * @property \DateTimeImmutable|NULL $lastLogin
  * @property \DateTimeImmutable|NULL $createdAt {default now}
  * @property string $defaultLang {default 'cs'}
+ * @property OrderStateChange[]|OneHasMany $orderStateChanges {1:m OrderStateChange::$createdBy}
  */
 class User extends Entity
 {

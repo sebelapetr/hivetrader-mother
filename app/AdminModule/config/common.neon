@@ -8,8 +8,10 @@ services:
     - App\AdminModule\Components\StockItemsDatagridFactory
     - App\AdminModule\Components\OrdersDatagridFactory
     - App\AdminModule\Components\SupplierProductsDatagridFactory
+    - App\AdminModule\Components\ProductsDatagridFactory
 
     #FORMS
     - App\AdminModule\Forms\ILoginFormFactory
     - App\AdminModule\Forms\IEditRightsFormFactory
     - App\AdminModule\Forms\IUserFormFactory
+    - App\AdminModule\Forms\IAssignMarketProductFormFactory

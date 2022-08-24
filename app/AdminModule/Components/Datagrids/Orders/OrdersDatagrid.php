@@ -24,16 +24,6 @@ class OrdersDatagrid extends BasicDatagrid
     {
         $this->setDataSource($this->orm->orders->findAll()->orderBy("createdAt", "DESC"));
 
-        $this->setColumnsHideable();
-
-        $this->addColumnText('id', $this->translator->translate($this->langDomain.'.id'))
-            ->setSortable()
-            ->setFilterText();
-
-        $this->addColumnText('number', $this->translator->translate($this->langDomain.'.number'))
-            ->setSortable()
-            ->setFilterText();
-
         $this->addColumnText("sentAt", $this->translator->translate($this->langDomain.'.sentAt'))
             ->setRenderer(function (Order $item) {
                 return $item->sentAt->format('d.m.Y H:i');
@@ -41,10 +31,22 @@ class OrdersDatagrid extends BasicDatagrid
             ->setSortable()
             ->setFilterDate();
 
+        $this->addColumnText('number', $this->translator->translate($this->langDomain.'.number'))
+            ->setSortable()
+            ->setFilterText();
+
         $this->addColumnText('market', $this->translator->translate($this->langDomain.'.market'))
             ->setRenderer(function (Order $order) {
                 return $order->market->name;
             });
+
+        $this->addColumnText("state", $this->translator->translate($this->langDomain.'.state'))
+            ->setRenderer(function(Order $order) {
+                return $this->translator->translate("entity.order.state".$order->state);
+            })
+            ->setSortable()
+            ->setFilterSelect([
+            ])->setPrompt('');
 
         $this->addColumnText("name", $this->translator->translate($this->langDomain.'.name'))
             ->setRenderer(function (Order $order) {
@@ -52,18 +54,13 @@ class OrdersDatagrid extends BasicDatagrid
             });
 
         $this->addColumnText("totalPriceVat", $this->translator->translate($this->langDomain.'.totalPriceVat'))
+            ->setRenderer(function (Order $order) {
+                return number_format($order->totalPriceVat, 2, ",", " ") . " Kč";
+            })
             ->setSortable()
             ->setFilterText();
 
-        $this->addColumnText("state", $this->translator->translate($this->langDomain.'.state'))
-            ->setRenderer(function(Order $order) {
-                return "todo";
-            })
-            ->setSortable()
-            ->setFilterSelect([
-            ])->setPrompt('');
-
         $this->addAction('detail', $this->translator->translate($this->langDomain.'.detail'))
-            ->setClass('btn btn-success btn-sm');
+            ->setClass('btn btn-outline-default btn-rounded width-100');
     }
 }

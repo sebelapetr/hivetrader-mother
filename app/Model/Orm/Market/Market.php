@@ -17,8 +17,10 @@ use Nextras\Orm\Relationships\OneHasOne;
  * @property string $url
  * @property DateTimeImmutable $createdAt
  * @property Order[]|OneHasMany $orders {1:m Order::$market}
+ * @property MarketProduct[]|OneHasMany $marketProducts {1:m MarketProduct::$market}
  */
 Class Market extends Entity
 {
    public const CODE_TEST = "TEST";
+   public const CODE_TESTTWO = "TESTTWO";
 }

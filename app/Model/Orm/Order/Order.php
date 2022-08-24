@@ -15,6 +15,7 @@ use Nextras\Orm\Relationships\OneHasOne;
  * @property Market $market {m:1 Market::$orders}
  * @property string $number #CODE-HASH
  * @property string $hash
+ * @property string $state {enum self::STATE_*}
  * @property string|NULL $name
  * @property string|NULL $surname
  * @property string|NULL $telephone
@@ -38,9 +39,19 @@ use Nextras\Orm\Relationships\OneHasOne;
  * @property DateTimeImmutable $sentAt
  * @property DateTimeImmutable $termsAgreeAt
  * @property OrderItem[]|OneHasMany $orderItems {1:m OrderItem::$order}
+ * @property OrderStateChange[]|OneHasMany $orderStateChanges {1:m OrderStateChange::$order}
  */
 Class Order extends Entity
 {
+    public const STATE_NEW = "NEW";
+    public const STATE_CONFIRMED = "CONFIRMED";
+    public const STATE_PROCESSING = "PROCESSING";
+    public const STATE_WAITING_FOR_DELIVERY = "WAITING_FOR_DELIVERY";
+    public const STATE_WAITING_FOR_PICKUP = "WAITING_FOR_PICKUP";
+    public const STATE_COMPLETED = "COMPLETED";
+    public const STATE_STORNO = "STORNO";
+    public const STATE_RETURNED = "RETURNED";
+
     public function getAddressString(): string
     {
         return $this->street . ' ' . $this->deliveryStreet . ', ' . $this->deliveryCity . ' ' . $this->deliveryZip;

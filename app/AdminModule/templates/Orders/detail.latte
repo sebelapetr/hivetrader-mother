@@ -1,47 +1,45 @@
 {varType App\Model\Order $item}
 {block content}
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <div class="col-sm-6">
-        <h1 class="h3 mb-0 text-gray-800">{_app.orders.detail, ['number' => $item->number]}</h1>
-    </div>
-    <div class="col-sm-6">
-        <a n:href="default" class="btn btn-success btn-sm float-right">{_app.orders.ordersList}</a>
-    </div>
-</div>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item active"><a n:href="default">{_app.orders.title}</a></li>
+    <li class="breadcrumb-item active">{_app.orders.detail, ['number' => $item->number]}</li>
+</ol>
+<h1 class="page-title">{_app.orders.detail, ['number' => $item->number]}</h1>
 
 
 <div class="row">
-    <div class="col-sm-12 mb-4">
-        <div class="card">
-            <div class="card-body text-dark">
+    <div class="col-sm-12">
+        <section class="widget">
+            <header>
+                <h3>
+                    Information
+                </h3>
+            </header>
+            <div class="widget-body">
                 {var $shipping = $item->getShippingOrderItem()}
-                    {var $payment = $item->getPaymentOrderItem()}
+                {var $payment = $item->getPaymentOrderItem()}
                 <span class="font-weight-bold">{_entity.order.sentAt}:</span> {$item->sentAt|date:'d.m.Y H:i'} <br>
                 <span class="font-weight-bold">{_entity.order.state}:</span> STATE TODO <br>
                 <span class="font-weight-bold">{_entity.order.market}:</span> {$item->market->name} <br>
                 <span class="font-weight-bold">{_entity.order.paymentType}:</span> {$payment ? $payment->name : ""} <br>
                 <span class="font-weight-bold">{_entity.order.deliveryType}:</span> {$shipping ? $shipping->name : ""} <br>
-            </div>
-            <div class="card-body text-dark">
+                    <br>
                 <span class="font-weight-bold">{_entity.order.note}:</span> <br>
                 {$item->note}
             </div>
-        </div>
+        </section>
     </div>
     <div class="col-sm-5">
-        <div class="card mb-4">
-            <div class="card-header py-3">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.personalData}</h6>
-                    </div>
-                    <div class="col-sm-6">
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive table-borderless">
-                    <table class="table">
+        <section class="widget">
+            <header>
+                <h3>
+                    {_app.orders.personalData}
+                </h3>
+            </header>
+            <div class="widget-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
                         <tr>
                             <th>{_entity.order.name}:</th>
                             <td>{$item->name} {$item->surname}</td>
@@ -75,38 +73,30 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
     <div class="col-sm-7">
-        <div class="card mb-4">
-            <div class="card-header py-3">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.orderState}</h6>
-                    </div>
-                    <div class="col-sm-6">
-                    </div>
-                </div>
+        <section class="widget">
+            <header>
+                <h3>
+                    {_app.orders.orderProcessWalkthrough}
+                </h3>
+            </header>
+            <div class="widget-body">
+               *TODO - StepByStep Order process walkthrough*
             </div>
-            <div class="card-body">
-                todo Order process step by step
-            </div>
-        </div>
+        </section>
     </div>
     <div class="col-sm-5">
-        <div class="card mb-4">
-            <div class="card-header py-3">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.deliveryData}</h6>
-                    </div>
-                    <div class="col-sm-6">
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
+        <section class="widget">
+            <header>
+                <h3>
+                    {_app.orders.deliveryData}
+                </h3>
+            </header>
+            <div class="widget-body">
                 <div class="table-responsive table-borderless">
-                    <table class="table">
+                    <table class="table table-bordered">
                         <tr>
                             <th>{_entity.order.deliveryName}:</th>
                             <td>{$item->deliveryName} {$item->deliverySurname}</td>
@@ -122,20 +112,17 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
     <div class="col-sm-7">
-        <div class="card mb-4">
-            <div class="card-header py-3">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.orderItems}</h6>
-                    </div>
-                    <div class="col-sm-6">
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
+
+        <section class="widget">
+            <header>
+                <h3>
+                    {_app.orders.orderItems}
+                </h3>
+            </header>
+            <div class="widget-body">
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -151,7 +138,7 @@
                         <tbody>
                         {foreach $item->orderItems as $orderItem}
                             <tr>
-                                <th scope="row">{$orderItem->number}</th>
+                                <td class="font-weight-bold">{$orderItem->number}</td>
                                 <td>{$orderItem->name}</td>
                                 <td>{$orderItem->quantity} pc.</td>
                                 <td>{$orderItem->pricePieceVat|number:2, ",", " "} Kč</td>
@@ -160,7 +147,7 @@
                             </tr>
                         {/foreach}
                         <tr>
-                            <th scope="row">{_app.orders.itemsTotal}</th>
+                            <td class="font-weight-bold">{_app.orders.itemsTotal}:</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -171,23 +158,75 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
     <div class="col-sm-5">
-        <div class="card mb-4">
-            <div class="card-header py-3">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h6 class="m-0 font-weight-bold text-dark">{_app.orders.supplierData}</h6>
-                    </div>
-                    <div class="col-sm-6">
-                    </div>
+        <section class="widget">
+            <header>
+                <h3>
+                    {_app.orders.supplierBillingData}
+                </h3>
+            </header>
+            <div class="widget-body">
+                * TODO - supplier data (on invoice) by market like NOVIKO.cz | Petr Šebela | IČO: 4566...)
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>{_entity.order.market}:</th>
+                            <td>Animalko.cz</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.name}:</th>
+                            <td>Petr Šebela</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.email}:</th>
+                            <td>info@animalko.cz</td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.billingAddress}:</th>
+                            <td>
+                                Na Větřáku 691, Jedovinice 67906
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{_entity.order.ic}:</th>
+                            <td>06254512</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-            <div class="card-body">
-                todo supplier data by market
-
+        </section>
+    </div>
+    <div class="col-sm-7">
+        <section class="widget">
+            <header>
+                <h3>
+                    {_app.orders.stateChanges}
+                </h3>
+            </header>
+            <div class="widget-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">{_entity.orderStateChange.state}</th>
+                            <th scope="col">{_entity.orderStateChange.createdAt}</th>
+                            <th scope="col">{_entity.orderStateChange.createdBy}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {foreach $item->orderStateChanges->toCollection()->orderBy("createdAt", "DESC") as $orderStateChange}
+                                <tr>
+                                    <td class="font-weight-bold">{_"entity.order.state".$orderStateChange->state}</td>
+                                    <td>{$orderStateChange->createdAt|date:"d. m. Y H:i"}</td>
+                                    <td>{$orderStateChange->createdBy ? $orderStateChange->createdBy->name : ""}</td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 </div>
