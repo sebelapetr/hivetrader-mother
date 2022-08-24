@@ -5,6 +5,7 @@ namespace App\AdminModule\Forms;
 
 use App\AdminModule\Components\BaseComponent;
 use App\Model\Enum\FlashMessages;
+use App\Model\Market;
 use App\Model\MarketProduct;
 use App\Model\Orm;
 use App\Model\Product;
@@ -35,8 +36,13 @@ class AssignMarketProductForm extends BaseComponent
         $form = new Nette\Application\UI\Form();
 
         $excludedMarketIds = [];
-        foreach ($this->product->stockItem->marketProducts as $marketProduct) {
-            $excludedMarketIds[] = $marketProduct->market->id;
+
+        if ($this->product->stockItem !== null) {
+            foreach ($this->product->stockItem->marketProducts as $marketProduct) {
+                $excludedMarketIds[] = $marketProduct->market->id;
+            }
+        } else {
+            // TODO CANNOT ASSIGN WITHOUT STOCK ITEM
         }
 
         $form->addSelect('market', $this->translator->translate($this->langDomain.'.market'), $this->orm->markets->findBy(["id!=" => $excludedMarketIds])->fetchPairs("id", "name")) //todo only not assigned
@@ -74,8 +80,15 @@ class AssignMarketProductForm extends BaseComponent
             return;
         }
 
+        /** @var Market|null $market */
+        $market = $this->orm->markets->getById($values->market);
+        if ($market === null) {
+            $form->addError("Market with id " . $values->market . " not found.");
+            return;
+        }
+
         $marketProduct = new MarketProduct();
-        $marketProduct->market = $this->orm->markets->getById($values->market);
+        $marketProduct->market = $market;
         $marketProduct->stockItem = $this->product->stockItem;
         $marketProduct->priceWithVat = $values->priceWithVat;
         $marketProduct->vat = 21;

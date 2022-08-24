@@ -19,6 +19,6 @@ class MarketProductsMapper extends Mapper
         WHERE market_products.id = %i;
         ';
         $saleQuantity = $this->connection->query($sql, $marketProductId)->fetchField(0);
-        return $saleQuantity == NULL ? 0 : $saleQuantity;
+        return $saleQuantity == NULL ? 0 : intval($saleQuantity);
     }
 }

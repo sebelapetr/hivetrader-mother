@@ -23,8 +23,9 @@ class RightsPresenter extends BaseAppPresenter {
     public function renderDefault(int $roleId = null): void
     {
         if ($roleId) {
+            /** @var Role|null $role */
             $role = $this->orm->roles->getById($roleId);
-            if ($role) {
+            if ($role !== null) {
                 $this->editRole = $role;
                 $this->getTemplate()->role = $role;
             }

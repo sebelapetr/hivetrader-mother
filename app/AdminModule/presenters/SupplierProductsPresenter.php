@@ -32,8 +32,9 @@ class SupplierProductsPresenter extends BaseAppPresenter
     public function actionDefault(int $id = null): void
     {
         if ($id !== null) {
+            /** @var Supplier|null $supplier */
             $supplier = $this->orm->suppliers->getBy(["id" => $id, "deleted" => false]);
-            if ($supplier) {
+            if ($supplier !== null) {
                 $this->supplier = $supplier;
             }
         } else {
@@ -95,7 +96,7 @@ class SupplierProductsPresenter extends BaseAppPresenter
 
     /**
      * @param int $id
-     * @return array<string, int>
+     * @return array<int, int>
      */
     private function getStockChangesChartData(int $id): array
     {
@@ -113,7 +114,7 @@ class SupplierProductsPresenter extends BaseAppPresenter
 
     /**
      * @param int $id
-     * @return array<string, int>
+     * @return array<int, int>
      */
     private function getStockChangesChartDailyData(int $id, \DateTimeImmutable $from, \DateTimeImmutable $to): array
     {
@@ -128,22 +129,22 @@ class SupplierProductsPresenter extends BaseAppPresenter
         }
         return $stockChangesData;
     }
-    public function createComponentDailyChartForm(string $name): Nette\Application\UI\Form
+    public function createComponentDailyChartForm(string $name): Form
     {
-        $form = new Nette\Application\UI\Form();
+        $form = new Form();
         $form->addText("from");
         $form->addText("to");
         $form->onSuccess[] = [$this, "dailyChartFormSuccess"];
         return $form;
     }
 
-    public function dailyChartFormSuccess(Nette\Application\UI\Form $form): void
+    public function dailyChartFormSuccess(Form $form): void
     {
         Debugger::barDump($form->getValues());
     }
 
     public function createComponentSupplierProductsDatagrid(string $name): SupplierProductsDatagrid
     {
-        return $this->supplierProductsDatagridFactory->create($this, $this->supplier);
+        return $this->supplierProductsDatagridFactory->create($this, $this->supplier); /** @phpstan-ignore-line */
     }
 }

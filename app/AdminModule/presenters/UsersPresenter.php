@@ -43,13 +43,15 @@ class UsersPresenter extends BaseAppPresenter
     public function actionDetail(int $id): void
     {
         $this->redirect("default"); //not ready yet. Use overview
+        /*
         /** @var User|null $user */
+        /*
         $user = $this->orm->users->getById($id);
         if ($user == null) {
             $this->flashMessage($this->translator->translate("common.userNotFound"));
             $this->redirect("default");
         }
-        $this->editUser = $user;
+        $this->editUser = $user;*/
     }
 
     public function renderDetail(): void
@@ -80,6 +82,7 @@ class UsersPresenter extends BaseAppPresenter
 
     public function handleToggleActive(int $userId): void
     {
+        /** @var User $user */
         $user = $this->orm->users->getById($userId);
         if ($user !== null) {
             $user->active = !$user->active;

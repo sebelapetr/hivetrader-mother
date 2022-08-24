@@ -27,7 +27,7 @@ class ProductsPresenter extends BaseAppPresenter
 
     public function actionDetail(int $id): void
     {
-        /** @var Product|null $supplierProduct */
+        /** @var Product|null $product */
         $product = $this->orm->products->getById($id);
         if ($product == null) {
             throw new \Exception("Product with id " . $id . " not found");
