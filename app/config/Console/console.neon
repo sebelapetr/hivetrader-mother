@@ -12,3 +12,5 @@ services:
     # COMMANDS
     - App\Console\TestCommand
     - App\Console\DeployCommand
+    - App\Console\EmailsSenderProcessor
+    emailSenderService: App\Model\Services\ConsoleLogger\EmailSenderService

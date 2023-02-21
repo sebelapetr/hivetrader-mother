@@ -27,6 +27,9 @@ use Nextras\Orm\Model\Model;
  * @property-read OrdersRepository $orders
  * @property-read OrderItemsRepository $orderItems
  * @property-read OrderStateChangesRepository $orderStateChanges
+ *
+ * @property-read EmailTemplatesRepository $emailTemplates
+ * @property-read EmailsRepository $emails
  */
 class Orm extends Model
 {

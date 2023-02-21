@@ -40,6 +40,7 @@ use Nextras\Orm\Relationships\OneHasOne;
  * @property DateTimeImmutable $termsAgreeAt
  * @property OrderItem[]|OneHasMany $orderItems {1:m OrderItem::$order}
  * @property OrderStateChange[]|OneHasMany $orderStateChanges {1:m OrderStateChange::$order}
+ * @property Email[]|OneHasMany $emails {1:m Email::$order}
  */
 Class Order extends Entity
 {
